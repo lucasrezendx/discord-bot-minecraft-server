@@ -35,40 +35,37 @@ module.exports.run = async (bot, message, args) => {
 
   let reason = args.slice(2).join(' ');
   let sucesso = new Discord.RichEmbed()
-        .setColor([54, 57, 63])
+        .setColor("2f3136")
         .setAuthor(`Usuário silenciado com sucesso!`, message.guild.iconURL)
-        .setDescription(`\`\`\`O usuário "${tomute.user.username}#${tomute.user.discriminator}" foi silenciado por "${message.author.username}".  \n \nTempo: ${ms(ms(mutetime))}.          \nMotivo: ${reason}.\`\`\``)
-        .setThumbnail(`${message.guild.iconURL}`)
+        .setDescription(`O usuário "${tomute.user.username}#${tomute.user.discriminator}" foi silenciado por "${message.author.username}".  \n \nTempo: ${ms(ms(mutetime))}.          \nMotivo: ${reason}.`)
         .setFooter(`ID do usuário: ${tomute.id}`)
     message.reply(sucesso);
 
   let log = new Discord.RichEmbed()
-    .setColor([54, 57, 63])
-    .setAuthor(`Um usuário foi silenciado.`, message.guild.iconURL)
-    .setDescription(`\`\`\`O usuário "@${tomute.user.username}#${tomute.user.discriminator}" foi silenciado por "${message.author.username}".\n   \nTempo: ${ms(ms(mutetime))}.        \nMotivo: ${reason}.\`\`\``)
-    .setThumbnail(`${message.guild.iconURL}`)
+    .setColor("2f3136")
+    .setAuthor(`🔇 Um usuário foi silenciado.`)
+    .setDescription(`O usuário "@${tomute.user.username}#${tomute.user.discriminator}" foi silenciado por "${message.author.username}".\n   \nTempo: ${ms(ms(mutetime))}.        \nMotivo: ${reason}.`)
     .setFooter(`ID do usuário: ${tomute.id}`)
     message.guild.channels.get("610331121720360970").send(`${tomute.user}`);
     message.guild.channels.get("610331121720360970").send(log);
     await(tomute.addRole(muterole.id));
 
     let pv = new Discord.RichEmbed()
-        .setColor([54, 57, 63])
+        .setColor("2f3136")
         .setTitle(`Você foi silenciado do nosso servidor!`)
         .setAuthor(`${message.guild.name}`, message.guild.iconURL)
-        .setDescription(`\`\`\`🔇 Infelizmente você foi silenciado do nosso servidor. \nTempo:${ms(ms(mutetime))}.  \nMotivo: ${reason}!\`\`\``)
+        .setDescription(`🔇 Infelizmente você foi silenciado do nosso servidor. \nTempo:${ms(ms(mutetime))}.  \nMotivo: ${reason}!`)
     bot.users.get(`${tomute.id}`).send(pv);
 
       setTimeout(function(){
     tomute.removeRole(muterole.id);    
-      bot.channels.get("610331121720360970").send(`<@${tomute.id}> cumpriu sua punição e foi desmutado.`);
     
 
     let pvu = new Discord.RichEmbed()
-        .setColor([54, 57, 63])
+        .setColor("2f3136")
         .setTitle(`Agora você pode falar!`)
         .setAuthor(`${message.guild.name}`, message.guild.iconURL)
-        .setDescription(`\`\`\`🎉Sua punição acabou e você foi desmutado em nosso servidor!\`\`\``)
+        .setDescription(`🎉 Sua punição acabou e você foi desmutado em nosso servidor! Evite infringir as regras novamente.`)
     bot.users.get(`${tomute.id}`).send(pvu);
   }, ms(mutetime));
     

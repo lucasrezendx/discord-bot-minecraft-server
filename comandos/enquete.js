@@ -3,9 +3,9 @@ const DISCORD = require('discord.js'); // API do discord.
 exports.run = async (bot, message, args) => { // Evento handler.
   
   let nao_perm = new DISCORD.RichEmbed()
-            .setColor([64, 67, 63])
+            .setColor("2f3136")
             .setAuthor(`Algo deu errado!`, message.guild.iconURL)
-            .setDescription(`\`\`\`Você deve possuir o cargo 💮| Gerente ou superior para executar este comando.\`\`\``) 
+            .setDescription(`Você deve possuir o cargo Gerente ou superior para executar este comando.`) 
   
   if(!message.member.roles.some(r=>["💮| Gerente", "👑| Master"].includes(r.name)) )
       return message.reply(nao_perm);
@@ -17,8 +17,8 @@ exports.run = async (bot, message, args) => { // Evento handler.
       
   message.guild.channels.get("611014236591620114").send("@everyone");
   message.guild.channels.get("611014236591620114").send(EMBED).then(embedMessage => {
-    embedMessage.react(message.guild.emojis.get('611012568349278240'));
-    embedMessage.react(message.guild.emojis.get('611010298148683797'));
+    embedMessage.react(message.guild.emojis.get('611012568349278240'))
+    .then(() => embedMessage.react(message.guild.emojis.get('611010298148683797')));
 })  
 }
 

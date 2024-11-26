@@ -3,9 +3,9 @@ exports.run = async (bot, message, args) => {
     let nao_perm = new Discord.RichEmbed()
               .setColor([64, 67, 63])
               .setAuthor(`Algo deu errado!`, message.guild.iconURL)
-            .setDescription(`\`\`\`Você deve possuir o cargo 🍀| Moderador ou superior para executar este comando.\`\`\``) 
+            .setDescription(`Você deve possuir o cargo **Administrador** ou superior para executar este comando.`) 
     
-    if(!message.member.roles.some(r=>["🌟| Ajudante","🍀| Moderador", "🎈| Administrador", "💮| Gerente", "👑| Master", , "perm+"].includes(r.name)) )
+    if(!message.member.roles.some(r=>["🎈| Administrador", "💮| Gerente", "👑| Master", , "perm+"].includes(r.name)) )
         return message.reply(nao_perm);
       const d = require('discord.js');
       const deleteCount = parseInt(args[0], 10);
@@ -18,8 +18,10 @@ exports.run = async (bot, message, args) => {
       let embed = new d.RichEmbed()
         .setColor([54, 57, 63])
         .setDescription(`Foram apagadas \`${args[0]} mensagens\` deste canal. \n\`\`\`As mensagens podem ter sido apagadas por diversos motivos, mas os mais frequentes são divulgação ou desavenças.\`\`\``)
-        message.reply(embed);
-      
+        message.reply(embed).then(sentMessage => {
+          sentMessage.delete(3000);
+      });
+    
     }
 
     exports.help = {
